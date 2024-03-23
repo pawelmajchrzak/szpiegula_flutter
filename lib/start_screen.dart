@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:szpiegula/widgets/reusable_card.dart';
 
 import 'constants.dart';
@@ -11,6 +12,9 @@ class StartScreen extends StatefulWidget {
 }
 
 class _StartScreenState extends State<StartScreen> {
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +29,9 @@ class _StartScreenState extends State<StartScreen> {
         ),
         child: Column(
           children: [
-            Expanded(
+            Container(
+              alignment: Alignment.bottomCenter,
+              height: 90,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -40,14 +46,13 @@ class _StartScreenState extends State<StartScreen> {
                 ],
               ),
             ),
-            Expanded(
-              child: Container(
-                child: Text(
-                  'Konfiguracja',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 35,
-                  ),
+            Container(
+              alignment: Alignment.center,
+              height: 120,
+              child: Text(
+                'Konfiguracja',
+                style: TextStyle(
+                  fontSize: 30,
                 ),
               ),
             ),
@@ -56,11 +61,11 @@ class _StartScreenState extends State<StartScreen> {
                 children: [
                   Expanded(
                     child: ReusableCard(
-                        kCardColourFirst, Icons.groups, 6, 'Gracze', () {}),
+                        kCardColourFirst, Icons.group, 6, 'Gracze', () {}),
                   ),
                   Expanded(
                     child: ReusableCard(
-                        kCardColourSecond, Icons.man_4, 1, 'Szpiedzy', () {}),
+                        kCardColourSecond, FontAwesomeIcons.userSecret, 1, 'Szpiedzy', () {}),
                   ),
                 ],
               ),
@@ -79,10 +84,12 @@ class _StartScreenState extends State<StartScreen> {
                 ],
               ),
             ),
-
+            SizedBox(
+              height: 50,
+            ),
             Expanded(
               child: Container(
-                margin: EdgeInsets.all(15),
+                margin: EdgeInsets.only(top: 30, bottom: 70, left: 10, right: 10),
                 decoration: BoxDecoration(
                   color: Color(0xFF960bf2),
                   borderRadius: BorderRadius.circular(10.0),
@@ -94,9 +101,9 @@ class _StartScreenState extends State<StartScreen> {
                   },
                   child: Center(
                     child: Text(
-                      'Start',
+                      'START',
                       style: TextStyle(
-                        fontSize: 35,
+                        fontSize: 25,
                       ),
                     ),
                   ),
