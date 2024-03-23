@@ -56,54 +56,11 @@ class _StartScreenState extends State<StartScreen> {
                 children: [
                   Expanded(
                     child: ReusableCard(
-                        kCardColourFirst,
-                        Icons.man_4,
-                        6,
-                        'Gracze',
-                        () {
-
-                        }
-                    ),
+                        kCardColourFirst, Icons.groups, 6, 'Gracze', () {}),
                   ),
                   Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        print('click');
-                        //onPress();
-                      },
-                      child: Container(
-                        margin: EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-                          color: Color(0xFF5515db),
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        child: const Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Icon(
-                                  Icons.man_4,
-                                  size: 50,
-                                ),
-                                Text(
-                                  '1',
-                                  style: TextStyle(
-                                    fontSize: 50,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Text(
-                              'Szpiedz',
-                              style: TextStyle(
-                                fontSize: 35,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                    child: ReusableCard(
+                        kCardColourSecond, Icons.man_4, 1, 'Szpiedzy', () {}),
                   ),
                 ],
               ),
@@ -112,86 +69,17 @@ class _StartScreenState extends State<StartScreen> {
               child: Row(
                 children: [
                   Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        print('click');
-                        //onPress();
-                      },
-                      child: Container(
-                        margin: EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-                          color: Color(0xFF5515db),
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        child: const Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Icon(
-                                  Icons.timer,
-                                  size: 50,
-                                ),
-                                Text(
-                                  '4',
-                                  style: TextStyle(
-                                    fontSize: 50,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Text(
-                              'Czas',
-                              style: TextStyle(
-                                fontSize: 35,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                    child: ReusableCard(
+                        kCardColourSecond, Icons.timer, 4, 'Czas', () {}),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      print('click');
-                      //onPress();
-                    },
-                    child: Container(
-                      margin: EdgeInsets.all(15),
-                      decoration: BoxDecoration(
-                        color: Color(0xFFcd06e9),
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      child: const Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Icon(
-                                Icons.interests,
-                                size: 50,
-                              ),
-                              Text(
-                                '5',
-                                style: TextStyle(
-                                  fontSize: 50,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Text(
-                            'Sekcje',
-                            style: TextStyle(
-                              fontSize: 35,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                  Expanded(
+                    child: ReusableCard(
+                        kCardColourFirst, Icons.interests, 5, 'Sekcje', () {}),
                   ),
                 ],
               ),
             ),
+
             Expanded(
               child: Container(
                 margin: EdgeInsets.all(15),
@@ -204,16 +92,16 @@ class _StartScreenState extends State<StartScreen> {
                     print('click');
                     //onPress();
                   },
-                  child:  Center(
+                  child: Center(
                     child: Text(
-                        'Start',
-                        style: TextStyle(
-                          fontSize: 35,
-                        ),
+                      'Start',
+                      style: TextStyle(
+                        fontSize: 35,
                       ),
-                  ),
+                    ),
                   ),
                 ),
+              ),
             ),
           ],
         ),
@@ -221,5 +109,3 @@ class _StartScreenState extends State<StartScreen> {
     );
   }
 }
-
-

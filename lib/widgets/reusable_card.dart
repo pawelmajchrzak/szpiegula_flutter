@@ -14,13 +14,13 @@ class ReusableCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-
         onPress();
       },
       child: Container(
-        margin: EdgeInsets.all(15),
+        padding: EdgeInsets.only(top: 10),
+        margin: EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: Color(0xFFcd06e9),
+          color: colorCard,
           borderRadius: BorderRadius.circular(10.0),
         ),
         child: Column(
@@ -30,20 +30,21 @@ class ReusableCard extends StatelessWidget {
               children: [
                 Icon(
                   iconCard,
-                  size: 50,
+                  size: 55,
                 ),
                 Text(
-                  '6',
+                  '$valueCard',
                   style: TextStyle(
                     fontSize: 50,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ],
             ),
             Text(
-              'Gracze',
+              nameCard,
               style: TextStyle(
-                fontSize: 35,
+                fontSize: 25,
               ),
             ),
           ],
