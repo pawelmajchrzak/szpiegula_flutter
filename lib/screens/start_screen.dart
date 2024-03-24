@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:szpiegula/widgets/reusable_card.dart';
 
-import 'constants.dart';
+import '../constants.dart';
 
 class StartScreen extends StatefulWidget {
   const StartScreen({super.key});
