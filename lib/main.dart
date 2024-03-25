@@ -15,6 +15,7 @@ class SpyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.transparent,
       ),
       home: SetPlayersScreen(),
+
     );
   }
 }

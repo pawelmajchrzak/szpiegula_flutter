@@ -11,6 +11,7 @@ class _SetPlayersScreenState extends State<SetPlayersScreen> {
   String namePlayer = 'Pawel';
   TextEditingController _controller = TextEditingController();
   List<TextEditingController> controllers = [];
+  final ScrollController _firstController = ScrollController();
 
   @override
   void initState() {
@@ -74,52 +75,82 @@ class _SetPlayersScreenState extends State<SetPlayersScreen> {
                 ],
               ),
             ),
+            Expanded(
+                //width: constraints.maxWidth / 2,
+                // When using the PrimaryScrollController and a Scrollbar
+                // together, only one ScrollPosition can be attached to the
+                // PrimaryScrollController at a time. Providing a
+                // unique scroll controller to this scroll view prevents it
+                // from attaching to the PrimaryScrollController.
+                child: Scrollbar(
+                  thumbVisibility: true,
+                  controller: _firstController,
+                  child: ListView.builder(
+                      controller: _firstController,
+                      itemCount: 100,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text('Scrollable 1 : Index $index'),
+                        );
+                      }),
+                )),
 
-
-              Column(
-                children:
-                  List.generate(numberOfPlayers, (index) => Container(
-                    margin: EdgeInsets.all(25),
-                    child:                   TextField(
-                      controller:controllers[index],
-                      //controller: _controller,
-                      keyboardType: TextInputType.name,
-                      onChanged: (value) {
-                        namePlayer = value;
-                        print(index);
-                      },
-                      decoration: InputDecoration(
-                          contentPadding:
-                          EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+            Expanded(
+              child: Scrollbar(
+                key: UniqueKey(),
+                thumbVisibility: true,
+                child: ListView.builder(
+                  primary: true,
+                  shrinkWrap: true,
+                  itemCount: numberOfPlayers,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Container(
+                      margin: EdgeInsets.all(25),
+                      child: TextField(
+                        controller: controllers[index],
+                        keyboardType: TextInputType.name,
+                        onChanged: (value) {
+                          namePlayer = value;
+                          print(index);
+                        },
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(10)),
-                          )),
-                    ),
-                  )),
-              ),
-
-            Container(
-              height: 80,
-              margin: EdgeInsets.only(top: 30, bottom: 70, left: 10, right: 10),
-              decoration: BoxDecoration(
-                color: Color(0xFF960bf2),
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              child: GestureDetector(
-                onTap: () {
-                  print('click');
-                  //onPress();
-                },
-                child: Center(
-                  child: Text(
-                    'OK',
-                    style: TextStyle(
-                      fontSize: 25,
-                    ),
-                  ),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ),
             ),
+
+
+
+            // Container(
+            //   height: 80,
+            //   margin: EdgeInsets.only(top: 30, bottom: 70, left: 10, right: 10),
+            //   decoration: BoxDecoration(
+            //     color: Color(0xFF960bf2),
+            //     borderRadius: BorderRadius.circular(10.0),
+            //   ),
+            //   child: GestureDetector(
+            //     onTap: () {
+            //       print('click');
+            //       //onPress();
+            //     },
+            //     child: Center(
+            //       child: Text(
+            //         'OK',
+            //         style: TextStyle(
+            //           fontSize: 25,
+            //         ),
+            //       ),
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),
