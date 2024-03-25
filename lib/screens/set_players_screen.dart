@@ -2,14 +2,28 @@ import 'package:flutter/material.dart';
 import '../constants.dart';
 
 class SetPlayersScreen extends StatefulWidget {
-
   @override
   State<SetPlayersScreen> createState() => _SetPlayersScreenState();
 }
 
 class _SetPlayersScreenState extends State<SetPlayersScreen> {
+  int numberOfPlayers = 3;
+  String namePlayer = 'Pawel';
+  TextEditingController _controller = TextEditingController();
+  List<TextEditingController> controllers = [];
 
-  int numbersOfPlayers = 3;
+  @override
+  void initState() {
+    _controller.text = "Gracz 1";
+
+    for (int i = 1; i <= numberOfPlayers; i++) {
+      controllers.add(TextEditingController(text: "Gracz $i"));
+    }
+    controllers.forEach((controller) {
+      print(controller.text);
+    });
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,46 +53,51 @@ class _SetPlayersScreenState extends State<SetPlayersScreen> {
               ),
             ),
             Container(
+              margin: EdgeInsets.only(bottom: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  RoundIconButton(
-                    () {
-                      setState(() {
-                        numbersOfPlayers--;
-                      });
-                    },
-                    Icons.remove,
-                    true
-                  ),
-                  Container(
-                    margin: EdgeInsets.symmetric(horizontal: 5),
-                    alignment: Alignment.center,
-                    height: 60,
-                    width: 60,
-                    decoration: BoxDecoration(
-                      color: Color(0xFF400b75),
-
-                    ),
-                    child: Text(
-                        numbersOfPlayers.toString(),
-                      style: TextStyle(
-                        fontSize: 35,
-                      ),
-                    ),
-                  ),
-                  RoundIconButton(
-                          () {
-                            setState(() {
-                              numbersOfPlayers++;
-                            });
-                      },
-                      Icons.add,
-                      false
-                  ),
+                  TypicalIconButton(() {
+                    setState(() {
+                      //numbersOfPlayers--;
+                      numberOfPlayers = numberOfPlayers > 1 ? numberOfPlayers - 1 : numberOfPlayers;
+                      controllers.removeLast(); // Usunięcie ostatniego kontrolera
+                    });
+                  }, Icons.remove, true),
+                  TypicalValuePresenter(numbersOfPlayers: numberOfPlayers),
+                  TypicalIconButton(() {
+                    setState(() {
+                      numberOfPlayers++;
+                      controllers.add(TextEditingController(text: 'Gracz $numberOfPlayers'));
+                    });
+                  }, Icons.add, false),
                 ],
               ),
             ),
+
+
+              Column(
+                children:
+                  List.generate(numberOfPlayers, (index) => Container(
+                    margin: EdgeInsets.all(25),
+                    child:                   TextField(
+                      controller:controllers[index],
+                      //controller: _controller,
+                      keyboardType: TextInputType.name,
+                      onChanged: (value) {
+                        namePlayer = value;
+                        print(index);
+                      },
+                      decoration: InputDecoration(
+                          contentPadding:
+                          EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                          )),
+                    ),
+                  )),
+              ),
+
             Container(
               height: 80,
               margin: EdgeInsets.only(top: 30, bottom: 70, left: 10, right: 10),
@@ -108,8 +127,36 @@ class _SetPlayersScreenState extends State<SetPlayersScreen> {
   }
 }
 
-class RoundIconButton extends StatelessWidget {
-  RoundIconButton(this.onPressed, this.icon, this.isLeft);
+class TypicalValuePresenter extends StatelessWidget {
+  const TypicalValuePresenter({
+    super.key,
+    required this.numbersOfPlayers,
+  });
+
+  final int numbersOfPlayers;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 5),
+      alignment: Alignment.center,
+      height: 60,
+      width: 60,
+      decoration: BoxDecoration(
+        color: kValueColour,
+      ),
+      child: Text(
+        numbersOfPlayers.toString(),
+        style: TextStyle(
+          fontSize: 35,
+        ),
+      ),
+    );
+  }
+}
+
+class TypicalIconButton extends StatelessWidget {
+  TypicalIconButton(this.onPressed, this.icon, this.isLeft);
 
   final IconData icon;
   final VoidCallback onPressed;
@@ -119,7 +166,6 @@ class RoundIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return RawMaterialButton(
       child: Icon(icon, size: 30),
-
       onPressed: onPressed,
       elevation: 0.0,
       constraints: BoxConstraints.tightFor(
@@ -128,10 +174,10 @@ class RoundIconButton extends StatelessWidget {
       ),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
-            topLeft: isLeft ? Radius.circular(30) : Radius.circular(0),
-            bottomLeft: isLeft ?  Radius.circular(30) : Radius.circular(0),
-            topRight: isLeft ? Radius.circular(0) : Radius.circular(30),
-            bottomRight: isLeft ? Radius.circular(0) : Radius.circular(30),
+          topLeft: isLeft ? Radius.circular(30) : Radius.circular(0),
+          bottomLeft: isLeft ? Radius.circular(30) : Radius.circular(0),
+          topRight: isLeft ? Radius.circular(0) : Radius.circular(30),
+          bottomRight: isLeft ? Radius.circular(0) : Radius.circular(30),
         ),
       ),
       fillColor: kCardColourFirst,
