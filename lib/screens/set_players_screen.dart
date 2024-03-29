@@ -16,19 +16,18 @@ class _SetPlayersScreenState extends State<SetPlayersScreen> {
   @override
   void initState() {
     _controller.text = "Gracz 1";
-
     for (int i = 1; i <= numberOfPlayers; i++) {
       controllers.add(TextEditingController(text: "Gracz $i"));
     }
     controllers.forEach((controller) {
       print(controller.text);
     });
-
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         decoration: BoxDecoration(
@@ -40,9 +39,9 @@ class _SetPlayersScreenState extends State<SetPlayersScreen> {
         ),
         child: Column(
           children: [
-            SizedBox(
-              height: 90,
-            ),
+            // SizedBox(
+            //   height: 90,
+            // ),
             Container(
               alignment: Alignment.center,
               height: 120,
@@ -75,38 +74,18 @@ class _SetPlayersScreenState extends State<SetPlayersScreen> {
                 ],
               ),
             ),
-            Expanded(
-                //width: constraints.maxWidth / 2,
-                // When using the PrimaryScrollController and a Scrollbar
-                // together, only one ScrollPosition can be attached to the
-                // PrimaryScrollController at a time. Providing a
-                // unique scroll controller to this scroll view prevents it
-                // from attaching to the PrimaryScrollController.
-                child: Scrollbar(
-                  thumbVisibility: true,
-                  controller: _firstController,
-                  child: ListView.builder(
-                      controller: _firstController,
-                      itemCount: 100,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text('Scrollable 1 : Index $index'),
-                        );
-                      }),
-                )),
 
             Expanded(
               child: Scrollbar(
-                key: UniqueKey(),
-                thumbVisibility: true,
+                //key: UniqueKey(),
+                thumbVisibility: false,
                 child: ListView.builder(
                   primary: true,
                   shrinkWrap: true,
                   itemCount: numberOfPlayers,
                   itemBuilder: (BuildContext context, int index) {
                     return Container(
-                      margin: EdgeInsets.all(25),
+                      margin: EdgeInsets.all(15),
                       child: TextField(
                         controller: controllers[index],
                         keyboardType: TextInputType.name,
@@ -127,30 +106,28 @@ class _SetPlayersScreenState extends State<SetPlayersScreen> {
               ),
             ),
 
-
-
-            // Container(
-            //   height: 80,
-            //   margin: EdgeInsets.only(top: 30, bottom: 70, left: 10, right: 10),
-            //   decoration: BoxDecoration(
-            //     color: Color(0xFF960bf2),
-            //     borderRadius: BorderRadius.circular(10.0),
-            //   ),
-            //   child: GestureDetector(
-            //     onTap: () {
-            //       print('click');
-            //       //onPress();
-            //     },
-            //     child: Center(
-            //       child: Text(
-            //         'OK',
-            //         style: TextStyle(
-            //           fontSize: 25,
-            //         ),
-            //       ),
-            //     ),
-            //   ),
-            // ),
+            Container(
+              height: 70,
+              margin: EdgeInsets.only(top: 10, bottom: 40, left: 10, right: 10),
+              decoration: BoxDecoration(
+                color: Color(0xFF960bf2),
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              child: GestureDetector(
+                onTap: () {
+                  print('click');
+                  //onPress();
+                },
+                child: Center(
+                  child: Text(
+                    'OK',
+                    style: TextStyle(
+                      fontSize: 25,
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
