@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:szpiegula/screens/set_players_screen.dart';
+import 'package:szpiegula/screens/set_spies_screen.dart';
+import 'package:szpiegula/screens/set_timer_screen.dart';
 import 'package:szpiegula/widgets/reusable_card.dart';
 
 import '../constants.dart';
@@ -61,11 +64,21 @@ class _StartScreenState extends State<StartScreen> {
                 children: [
                   Expanded(
                     child: ReusableCard(
-                        kCardColourFirst, Icons.group, 6, 'Gracze', () {}),
+                        kCardColourFirst, Icons.group, 6, 'Gracze', () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) {
+                            return SetPlayersScreen();
+                          }
+                          ));
+                    }),
                   ),
                   Expanded(
                     child: ReusableCard(
-                        kCardColourSecond, FontAwesomeIcons.userSecret, 1, 'Szpiedzy', () {}),
+                        kCardColourSecond, FontAwesomeIcons.userSecret, 1, 'Szpiedzy', () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) {
+                        return SetSpiesScreen();
+                      }
+                      ));
+                    }),
                   ),
                 ],
               ),
@@ -75,7 +88,12 @@ class _StartScreenState extends State<StartScreen> {
                 children: [
                   Expanded(
                     child: ReusableCard(
-                        kCardColourSecond, Icons.timer, 4, 'Czas', () {}),
+                        kCardColourSecond, Icons.timer, 4, 'Czas', () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) {
+                        return SetTimerScreen();
+                      }
+                      ));
+                    }),
                   ),
                   Expanded(
                     child: ReusableCard(

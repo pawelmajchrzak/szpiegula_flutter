@@ -66,7 +66,6 @@ class _SetSpiesScreenState extends State<SetSpiesScreen> {
                       } else {
                         alert = 'Maksymalnie 50% graczy to szpiedzy';
                       }
-                      numberOfSpies++;
                     });
                   }, Icons.add, false),
                 ],

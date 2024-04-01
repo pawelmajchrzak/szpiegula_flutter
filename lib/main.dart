@@ -16,7 +16,7 @@ class SpyApp extends StatelessWidget {
         primaryColor: Color(0xFF0A0E21),
         scaffoldBackgroundColor: Colors.transparent,
       ),
-      home: SetTimerScreen(),
+      home: StartScreen(),
 
     );
   }
