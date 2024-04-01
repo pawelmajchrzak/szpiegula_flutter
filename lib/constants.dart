@@ -19,6 +19,14 @@ const kTextFieldDecoration = InputDecoration(
   ),
 );
 
+const BoxDecoration standardDecoration = BoxDecoration(
+  gradient: LinearGradient(
+    begin: Alignment.bottomCenter,
+    end: Alignment.topCenter,
+    colors: [Color(0xFF370f8c), Color(0xFF13072f)],
+  ),
+);
+
 // InputDecoration(
 // contentPadding:
 // EdgeInsets.symmetric(vertical: 15, horizontal: 20),
