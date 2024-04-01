@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:szpiegula/screens/set_categories_screen.dart';
 import 'package:szpiegula/screens/set_players_screen.dart';
 import 'package:szpiegula/screens/set_spies_screen.dart';
 import 'package:szpiegula/screens/set_timer_screen.dart';
@@ -15,6 +16,10 @@ class StartScreen extends StatefulWidget {
 }
 
 class _StartScreenState extends State<StartScreen> {
+
+  int numberOfPlayers = 3;
+  int numberOfSpies = 1;
+  int numberOfMinutes = 5;
 
 
 
@@ -64,7 +69,7 @@ class _StartScreenState extends State<StartScreen> {
                 children: [
                   Expanded(
                     child: ReusableCard(
-                        kCardColourFirst, Icons.group, 6, 'Gracze', () {
+                        kCardColourFirst, Icons.group, numberOfPlayers, 'Gracze', () {
                           Navigator.push(context, MaterialPageRoute(builder: (context) {
                             return SetPlayersScreen();
                           }
@@ -73,7 +78,7 @@ class _StartScreenState extends State<StartScreen> {
                   ),
                   Expanded(
                     child: ReusableCard(
-                        kCardColourSecond, FontAwesomeIcons.userSecret, 1, 'Szpiedzy', () {
+                        kCardColourSecond, FontAwesomeIcons.userSecret, numberOfSpies, 'Szpiedzy', () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) {
                         return SetSpiesScreen();
                       }
@@ -88,7 +93,7 @@ class _StartScreenState extends State<StartScreen> {
                 children: [
                   Expanded(
                     child: ReusableCard(
-                        kCardColourSecond, Icons.timer, 4, 'Czas', () {
+                        kCardColourSecond, Icons.timer, numberOfMinutes, 'Czas', () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) {
                         return SetTimerScreen();
                       }
@@ -97,7 +102,12 @@ class _StartScreenState extends State<StartScreen> {
                   ),
                   Expanded(
                     child: ReusableCard(
-                        kCardColourFirst, Icons.interests, 5, 'Sekcje', () {}),
+                        kCardColourFirst, Icons.interests, 5, 'Sekcje', () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) {
+                        return SetCategoriesScreen();
+                      }
+                      ));
+                    }),
                   ),
                 ],
               ),

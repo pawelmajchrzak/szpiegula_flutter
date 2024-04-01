@@ -82,18 +82,19 @@ class _SetTimerScreenState extends State<SetTimerScreen> {
                 ),
               ),
             ),
-            Container(
-              height: 90,
-              margin: EdgeInsets.only(top: 20, bottom: 20, left: 15, right: 15),
-              decoration: BoxDecoration(
-                color: Color(0xFF960bf2),
-                borderRadius: BorderRadius.circular(30.0),
-              ),
-              child: GestureDetector(
-                onTap: () {
-                  print('click');
-                  //onPress();
-                },
+            GestureDetector(
+              onTap: () {
+                print('click');
+                //onPress();
+                Navigator.pop(context);
+              },
+              child: Container(
+                height: 90,
+                margin: EdgeInsets.only(top: 20, bottom: 20, left: 15, right: 15),
+                decoration: BoxDecoration(
+                  color: Color(0xFF960bf2),
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
                 child: Center(
                   child: Text(
                     'OK',
