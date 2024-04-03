@@ -10,7 +10,7 @@ class SetCategoriesScreen extends StatefulWidget {
 }
 
 class _SetCategoriesScreenState extends State<SetCategoriesScreen> {
-  List<String> categories = ['Obiekty','Sport','Miejsca','Zwierzęta','Transport'];
+  List<String> categories = ['Państwa','Obiekty','Sport','Miejsca','Zwierzęta','Transport'];
   String alert = '';
   //List<Color> colorCard = List.filled(6, kCardColourSecond);
   late Color colorCard0 = kCardColourSecond;
@@ -85,25 +85,129 @@ class _SetCategoriesScreenState extends State<SetCategoriesScreen> {
                     children: [
                       Expanded(child: CategoryCard(colorCard0, Icons.flag_circle, 'Państwa', () {
                         setState(() {
-
+                          if(colorCard0 == kCardColourSecond) {
+                            colorCard0 = kCardColourFirst;
+                            alert = '';
+                          } else if (
+                              colorCard1 == kCardColourSecond &&
+                              colorCard2 == kCardColourSecond &&
+                                  colorCard3 == kCardColourSecond &&
+                                  colorCard4 == kCardColourSecond &&
+                                  colorCard5 == kCardColourSecond
+                          ) {
+                            alert = 'Wybierz minimum jedną kategorię';
+                          } else {
+                            colorCard0 = kCardColourSecond;
+                            alert = '';
+                          }
                         });
                       })),
-                      Expanded(child: CategoryCard(colorCard1, Icons.lightbulb, 'Obiekty', () {})),
+                      Expanded(child: CategoryCard(colorCard1, Icons.lightbulb, 'Obiekty', () {
+                        setState(() {
+                          if(colorCard1 == kCardColourSecond) {
+                            colorCard1 = kCardColourFirst;
+                            alert = '';
+                          } else if (
+                          colorCard0 == kCardColourSecond &&
+                              colorCard2 == kCardColourSecond &&
+                              colorCard3 == kCardColourSecond &&
+                              colorCard4 == kCardColourSecond &&
+                              colorCard5 == kCardColourSecond
+                          ) {
+                            alert = 'Wybierz minimum jedną kategorię';
+                          } else {
+                            colorCard1 = kCardColourSecond;
+                            alert = '';
+                          }
+                        });
+                      })),
                     ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
 
-                      Expanded(child: CategoryCard(colorCard2, Icons.sports, 'Sport', () {})),
-                      Expanded(child: CategoryCard(colorCard3, Icons.place, 'Miejsca', () {})),
+                      Expanded(child: CategoryCard(colorCard2, Icons.sports, 'Sport', () {
+                        setState(() {
+                          if(colorCard2 == kCardColourSecond) {
+                            colorCard2 = kCardColourFirst;
+                            alert = '';
+                          } else if (
+                          colorCard0 == kCardColourSecond &&
+                              colorCard1 == kCardColourSecond &&
+                              colorCard3 == kCardColourSecond &&
+                              colorCard4 == kCardColourSecond &&
+                              colorCard5 == kCardColourSecond
+                          ) {
+                            alert = 'Wybierz minimum jedną kategorię';
+                          } else {
+                            colorCard2 = kCardColourSecond;
+                            alert = '';
+                          }
+                        });
+                      })),
+                      Expanded(child: CategoryCard(colorCard3, Icons.place, 'Miejsca', () {
+                        setState(() {
+                          if(colorCard3 == kCardColourSecond) {
+                            colorCard3 = kCardColourFirst;
+                            alert = '';
+                          } else if (
+                          colorCard0 == kCardColourSecond &&
+                              colorCard1 == kCardColourSecond &&
+                              colorCard2 == kCardColourSecond &&
+                              colorCard4 == kCardColourSecond &&
+                              colorCard5 == kCardColourSecond
+                          ) {
+                            alert = 'Wybierz minimum jedną kategorię';
+                          } else {
+                            colorCard3 = kCardColourSecond;
+                            alert = '';
+                          }
+                        });
+                      })),
                     ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Expanded(child: CategoryCard(colorCard4, Icons.pets, 'Zwierzęta', () {})),
-                      Expanded(child: CategoryCard(colorCard5, Icons.flight, 'Transport', () {})),
+                      Expanded(child: CategoryCard(colorCard4, Icons.pets, 'Zwierzęta', () {
+                        setState(() {
+                          if(colorCard4 == kCardColourSecond) {
+                            colorCard4 = kCardColourFirst;
+                            alert = '';
+                          } else if (
+                          colorCard0 == kCardColourSecond &&
+                              colorCard1 == kCardColourSecond &&
+                              colorCard2 == kCardColourSecond &&
+                              colorCard3 == kCardColourSecond &&
+                              colorCard5 == kCardColourSecond
+                          ) {
+                            alert = 'Wybierz minimum jedną kategorię';
+                          } else {
+                            colorCard4 = kCardColourSecond;
+                            alert = '';
+                          }
+                        });
+                      })),
+                      Expanded(child: CategoryCard(colorCard5, Icons.flight, 'Transport', () {
+                        setState(() {
+                          if(colorCard5 == kCardColourSecond) {
+                            colorCard5 = kCardColourFirst;
+                            alert = '';
+                          } else if (
+                          colorCard0 == kCardColourSecond &&
+                              colorCard1 == kCardColourSecond &&
+                              colorCard2 == kCardColourSecond &&
+                              colorCard3 == kCardColourSecond &&
+                              colorCard4 == kCardColourSecond
+                          ) {
+                            alert = 'Wybierz minimum jedną kategorię';
+                          } else {
+                            colorCard5 = kCardColourSecond;
+                            alert = '';
+                          }
+                        });
+                      })),
                     ],
                   ),
                 ],
