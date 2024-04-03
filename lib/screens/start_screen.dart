@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:szpiegula/screens/game_screen.dart';
 import 'package:szpiegula/screens/set_categories_screen.dart';
 import 'package:szpiegula/screens/set_players_screen.dart';
 import 'package:szpiegula/screens/set_spies_screen.dart';
@@ -116,17 +117,20 @@ class _StartScreenState extends State<StartScreen> {
               height: 50,
             ),
             Expanded(
-              child: Container(
-                margin: EdgeInsets.only(top: 30, bottom: 70, left: 10, right: 10),
-                decoration: BoxDecoration(
-                  color: Color(0xFF960bf2),
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                child: GestureDetector(
-                  onTap: () {
-                    print('click');
-                    //onPress();
-                  },
+              child: GestureDetector(
+                onTap: () {
+                  print('click');
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return GameScreen();
+                  }
+                  ));
+                },
+                child: Container(
+                  margin: EdgeInsets.only(top: 30, bottom: 70, left: 10, right: 10),
+                  decoration: BoxDecoration(
+                    color: Color(0xFF960bf2),
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
                   child: Center(
                     child: Text(
                       'START',
