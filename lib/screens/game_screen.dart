@@ -14,6 +14,9 @@ class _GameScreenState extends State<GameScreen> {
   String alert = '';
   Color color1 = kCardColourFirst;
 
+  double _rotationAngle = 3.14; // Aktualny kąt obrotu karty
+  bool _isSpy = false; // Flaga sprawdzająca czy jesteś szpiegiem
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,15 +42,26 @@ class _GameScreenState extends State<GameScreen> {
               alignment: Alignment.center,
               child: GestureDetector(
                 onTap: () {
-                 setState(() {
-                   if (color1 == kCardColourFirst) {
-                     color1 = kCardColourSecond;
-                   } else {
-                     color1 = kCardColourFirst;
-                   }
-                 });
+                  setState(() {
+                    if (color1 == kCardColourFirst) {
+                      color1 = kCardColourSecond;
+                      _rotationAngle = 0;
+                    } else {
+                      color1 = kCardColourFirst;
+                      _rotationAngle = 3.14;
+                    }
+                    //_rotationAngle = _rotationAngle == 0.0 ? 3.14 : 0.0;
+                    Future.delayed(Duration(milliseconds: 400), () {
+                      setState(() {
+                        _isSpy = !_isSpy;
+                      });
+                    });
+                  });
                 },
-                child: Container(
+                child: AnimatedContainer(
+                  //alignment: Alignment.center,
+                  duration: Duration(milliseconds: 800),
+                  curve: Curves.easeInOut,
                   height: 300,
                   width: 200,
                   //padding: EdgeInsets.only(top: 5, bottom: 5),
@@ -56,10 +70,23 @@ class _GameScreenState extends State<GameScreen> {
                     color: color1,
                     borderRadius: BorderRadius.circular(10.0),
                   ),
-                  child: Icon(
-                    Icons.remove_red_eye,
-                    size: 50,
-                  ),
+                  transformAlignment: Alignment.center,
+                  transform: Matrix4.rotationY(_rotationAngle),
+
+                  child: _isSpy
+                      ? Center(
+                          child: Text(
+                            'Jesteś szpiegiem',
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                        )
+                      : Center(
+                          child: Icon(
+                            Icons.remove_red_eye,
+                            size: 50,
+                          ),
+                        ),
                 ),
               ),
             ),
@@ -69,7 +96,6 @@ class _GameScreenState extends State<GameScreen> {
               child: Icon(
                 Icons.ads_click,
                 size: 50,
-
               ),
             ),
             Container(
@@ -78,7 +104,6 @@ class _GameScreenState extends State<GameScreen> {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 18,
-
                 ),
               ),
             ),
