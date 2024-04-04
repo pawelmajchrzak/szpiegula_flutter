@@ -16,6 +16,7 @@ class _GameScreenState extends State<GameScreen> {
 
   double _rotationAngle = 3.14; // Aktualny kąt obrotu karty
   bool _isSpy = false; // Flaga sprawdzająca czy jesteś szpiegiem
+  String comment = 'Naciśnij na kartę wtedy dowiesz się czy jesteś szpiegiem';
 
   @override
   Widget build(BuildContext context) {
@@ -46,9 +47,11 @@ class _GameScreenState extends State<GameScreen> {
                     if (color1 == kCardColourFirst) {
                       color1 = kCardColourSecond;
                       _rotationAngle = 0;
+                      comment = 'Zakryj kartę zanim przekażesz telefon dalej';
                     } else {
                       color1 = kCardColourFirst;
                       _rotationAngle = 3.14;
+                      comment = 'Naciśnij na kartę wtedy dowiesz się czy jesteś szpiegiem';
                     }
                     //_rotationAngle = _rotationAngle == 0.0 ? 3.14 : 0.0;
                     Future.delayed(Duration(milliseconds: 400), () {
@@ -100,7 +103,7 @@ class _GameScreenState extends State<GameScreen> {
             ),
             Container(
               child: Text(
-                'Naciśnij na kartę wtedy dowiesz się czy jesteś szpiegiem',
+                comment,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 18,

@@ -71,10 +71,14 @@ class _StartScreenState extends State<StartScreen> {
                   Expanded(
                     child: ReusableCard(
                         kCardColourFirst, Icons.group, numberOfPlayers, 'Gracze', () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) {
-                            return SetPlayersScreen();
-                          }
-                          ));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) {
+                        return SetPlayersScreen(numberOfPlayers);
+                      })).then((value) {
+                        setState(() {
+                          numberOfPlayers = value;
+                          print(numberOfPlayers);
+                        });
+                      });
                     }),
                   ),
                   Expanded(

@@ -4,13 +4,22 @@ import '../widgets/typical_icon_button.dart';
 import '../widgets/typical_value_presenter.dart';
 
 class SetPlayersScreen extends StatefulWidget {
+
+  int initialNumberOfPlayers;
+  SetPlayersScreen(this.initialNumberOfPlayers);
+
+
   @override
-  State<SetPlayersScreen> createState() => _SetPlayersScreenState();
+  State<SetPlayersScreen> createState() => _SetPlayersScreenState(initialNumberOfPlayers);
 }
 
 class _SetPlayersScreenState extends State<SetPlayersScreen> {
-  int numberOfPlayers = 1;
+  int numberOfPlayers;
   String alert = '';
+
+  _SetPlayersScreenState(this.numberOfPlayers);
+
+  //get numberOfPlayers => null;
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +95,7 @@ class _SetPlayersScreenState extends State<SetPlayersScreen> {
               onTap: () {
                 print('click');
                 //onPress();
-                Navigator.pop(context);
+                Navigator.pop(context, numberOfPlayers);
               },
               child: Container(
                 height: 90,
