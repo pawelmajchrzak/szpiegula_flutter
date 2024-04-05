@@ -12,7 +12,7 @@ class GameScreen extends StatefulWidget {
 class _GameScreenState extends State<GameScreen> {
   int numberOfSpies = 1;
   String alert = '';
-  Color color1 = kCardColourFirst;
+  Color color1 = kCardColourSecond;
 
   double _rotationAngle = 3.14; // Aktualny kąt obrotu karty
   bool _isSpy = false; // Flaga sprawdzająca czy jesteś szpiegiem
@@ -44,12 +44,12 @@ class _GameScreenState extends State<GameScreen> {
               child: GestureDetector(
                 onTap: () {
                   setState(() {
-                    if (color1 == kCardColourFirst) {
-                      color1 = kCardColourSecond;
+                    if (_rotationAngle == 3.14) {
+                      //color1 = kCardColourSecond;
                       _rotationAngle = 0;
                       comment = 'Zakryj kartę zanim przekażesz telefon dalej';
                     } else {
-                      color1 = kCardColourFirst;
+                      //color1 = kCardColourFirst;
                       _rotationAngle = 3.14;
                       comment = 'Naciśnij na kartę wtedy dowiesz się czy jesteś szpiegiem';
                     }
@@ -57,6 +57,7 @@ class _GameScreenState extends State<GameScreen> {
                     Future.delayed(Duration(milliseconds: 400), () {
                       setState(() {
                         _isSpy = !_isSpy;
+                        //color2 = color1;
                       });
                     });
                   });
@@ -72,6 +73,10 @@ class _GameScreenState extends State<GameScreen> {
                   decoration: BoxDecoration(
                     color: color1,
                     borderRadius: BorderRadius.circular(10.0),
+                    border: Border.all(
+                      color: Colors.white,
+                      width: 4,
+                    )
                   ),
                   transformAlignment: Alignment.center,
                   transform: Matrix4.rotationY(_rotationAngle),
@@ -87,7 +92,7 @@ class _GameScreenState extends State<GameScreen> {
                       : Center(
                           child: Icon(
                             Icons.remove_red_eye,
-                            size: 50,
+                            size: 80,
                           ),
                         ),
                 ),
