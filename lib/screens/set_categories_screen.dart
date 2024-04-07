@@ -5,13 +5,23 @@ import '../widgets/typical_icon_button.dart';
 import '../widgets/typical_value_presenter.dart';
 
 class SetCategoriesScreen extends StatefulWidget {
+
+  List<String> initialCategories;
+
+
+  SetCategoriesScreen(this.initialCategories);
+
   @override
-  State<SetCategoriesScreen> createState() => _SetCategoriesScreenState();
+  State<SetCategoriesScreen> createState() => _SetCategoriesScreenState(initialCategories);
 }
 
 class _SetCategoriesScreenState extends State<SetCategoriesScreen> {
-  List<String> categories = ['Państwa','Obiekty','Sport','Miejsca','Zwierzęta','Transport'];
+  List<String> categories;
   String alert = '';
+
+  _SetCategoriesScreenState(
+      this.categories);
+
   //List<Color> colorCard = List.filled(6, kCardColourSecond);
   late Color colorCard0 = kCardColourSecond;
   late Color colorCard1 = kCardColourSecond;
@@ -86,7 +96,9 @@ class _SetCategoriesScreenState extends State<SetCategoriesScreen> {
                       Expanded(child: CategoryCard(colorCard0, Icons.flag_circle, 'Państwa', () {
                         setState(() {
                           if(colorCard0 == kCardColourSecond) {
+                            categories.add('Państwa');
                             colorCard0 = kCardColourFirst;
+
                             alert = '';
                           } else if (
                               colorCard1 == kCardColourSecond &&
@@ -97,6 +109,7 @@ class _SetCategoriesScreenState extends State<SetCategoriesScreen> {
                           ) {
                             alert = 'Wybierz minimum jedną kategorię';
                           } else {
+                            categories.remove('Państwa');
                             colorCard0 = kCardColourSecond;
                             alert = '';
                           }
@@ -105,6 +118,7 @@ class _SetCategoriesScreenState extends State<SetCategoriesScreen> {
                       Expanded(child: CategoryCard(colorCard1, Icons.lightbulb, 'Obiekty', () {
                         setState(() {
                           if(colorCard1 == kCardColourSecond) {
+                            categories.add('Obiekty');
                             colorCard1 = kCardColourFirst;
                             alert = '';
                           } else if (
@@ -116,6 +130,7 @@ class _SetCategoriesScreenState extends State<SetCategoriesScreen> {
                           ) {
                             alert = 'Wybierz minimum jedną kategorię';
                           } else {
+                            categories.remove('Obiekty');
                             colorCard1 = kCardColourSecond;
                             alert = '';
                           }
@@ -130,6 +145,7 @@ class _SetCategoriesScreenState extends State<SetCategoriesScreen> {
                       Expanded(child: CategoryCard(colorCard2, Icons.sports, 'Sport', () {
                         setState(() {
                           if(colorCard2 == kCardColourSecond) {
+                            categories.add('Sport');
                             colorCard2 = kCardColourFirst;
                             alert = '';
                           } else if (
@@ -141,6 +157,7 @@ class _SetCategoriesScreenState extends State<SetCategoriesScreen> {
                           ) {
                             alert = 'Wybierz minimum jedną kategorię';
                           } else {
+                            categories.remove('Sport');
                             colorCard2 = kCardColourSecond;
                             alert = '';
                           }
@@ -149,6 +166,7 @@ class _SetCategoriesScreenState extends State<SetCategoriesScreen> {
                       Expanded(child: CategoryCard(colorCard3, Icons.place, 'Miejsca', () {
                         setState(() {
                           if(colorCard3 == kCardColourSecond) {
+                            categories.add('Miejsca');
                             colorCard3 = kCardColourFirst;
                             alert = '';
                           } else if (
@@ -160,6 +178,7 @@ class _SetCategoriesScreenState extends State<SetCategoriesScreen> {
                           ) {
                             alert = 'Wybierz minimum jedną kategorię';
                           } else {
+                            categories.remove('Miejsca');
                             colorCard3 = kCardColourSecond;
                             alert = '';
                           }
@@ -173,6 +192,7 @@ class _SetCategoriesScreenState extends State<SetCategoriesScreen> {
                       Expanded(child: CategoryCard(colorCard4, Icons.pets, 'Zwierzęta', () {
                         setState(() {
                           if(colorCard4 == kCardColourSecond) {
+                            categories.add('Zwierzęta');
                             colorCard4 = kCardColourFirst;
                             alert = '';
                           } else if (
@@ -184,6 +204,7 @@ class _SetCategoriesScreenState extends State<SetCategoriesScreen> {
                           ) {
                             alert = 'Wybierz minimum jedną kategorię';
                           } else {
+                            categories.remove('Zwierzęta');
                             colorCard4 = kCardColourSecond;
                             alert = '';
                           }
@@ -192,6 +213,7 @@ class _SetCategoriesScreenState extends State<SetCategoriesScreen> {
                       Expanded(child: CategoryCard(colorCard5, Icons.flight, 'Transport', () {
                         setState(() {
                           if(colorCard5 == kCardColourSecond) {
+                            categories.add('Transport');
                             colorCard5 = kCardColourFirst;
                             alert = '';
                           } else if (
@@ -203,6 +225,7 @@ class _SetCategoriesScreenState extends State<SetCategoriesScreen> {
                           ) {
                             alert = 'Wybierz minimum jedną kategorię';
                           } else {
+                            categories.remove('Transport');
                             colorCard5 = kCardColourSecond;
                             alert = '';
                           }
@@ -231,7 +254,7 @@ class _SetCategoriesScreenState extends State<SetCategoriesScreen> {
               onTap: () {
                 print('click');
                 //onPress();
-                Navigator.pop(context);
+                Navigator.pop(context,categories);
               },
               child: Container(
                 height: 90,

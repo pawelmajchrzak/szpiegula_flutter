@@ -64,7 +64,7 @@ class _SetPlayersScreenState extends State<SetPlayersScreen> {
                           numberOfPlayers--;
                           alert = '';
                         } else {
-                          alert = 'Zmniejszy najpierw ilość szpiegów';
+                          alert = 'Zmniejsz najpierw ilość szpiegów';
                         }
 
                         //numberOfSpies = (numberOfPlayers/2) as int;

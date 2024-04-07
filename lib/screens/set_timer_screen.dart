@@ -4,13 +4,20 @@ import '../widgets/typical_icon_button.dart';
 import '../widgets/typical_value_presenter.dart';
 
 class SetTimerScreen extends StatefulWidget {
+
+  int initialNumberOfMinutes;
+
+  SetTimerScreen(this.initialNumberOfMinutes);
+
   @override
-  State<SetTimerScreen> createState() => _SetTimerScreenState();
+  State<SetTimerScreen> createState() => _SetTimerScreenState(initialNumberOfMinutes);
 }
 
 class _SetTimerScreenState extends State<SetTimerScreen> {
-  int numberOfMinutes = 4;
+  int numberOfMinutes;
   String alert = '';
+
+  _SetTimerScreenState(this.numberOfMinutes);
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +93,7 @@ class _SetTimerScreenState extends State<SetTimerScreen> {
               onTap: () {
                 print('click');
                 //onPress();
-                Navigator.pop(context);
+                Navigator.pop(context, numberOfMinutes);
               },
               child: Container(
                 height: 90,

@@ -21,6 +21,7 @@ class _StartScreenState extends State<StartScreen> {
   int numberOfPlayers = 3;
   int numberOfSpies = 1;
   int numberOfMinutes = 5;
+  List<String> categories = ['Państwa','Obiekty','Sport','Miejsca','Zwierzęta','Transport'];
 
 
 
@@ -76,7 +77,7 @@ class _StartScreenState extends State<StartScreen> {
                       })).then((value) {
                         setState(() {
                           numberOfPlayers = value;
-                          print(numberOfPlayers);
+
                         });
                       });
                     }),
@@ -89,7 +90,6 @@ class _StartScreenState extends State<StartScreen> {
                       })).then((value) {
                         setState(() {
                           numberOfSpies = value;
-                          print(numberOfSpies);
                         });
                       });
                     }),
@@ -104,18 +104,24 @@ class _StartScreenState extends State<StartScreen> {
                     child: ReusableCard(
                         kCardColourSecond, Icons.timer, numberOfMinutes, 'Czas', () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) {
-                        return SetTimerScreen();
-                      }
-                      ));
+                        return SetTimerScreen(numberOfMinutes);
+                      })).then((value) {
+                        setState(() {
+                          numberOfMinutes = value;
+                        });
+                      });
                     }),
                   ),
                   Expanded(
                     child: ReusableCard(
-                        kCardColourFirst, Icons.interests, 5, 'Sekcje', () {
+                        kCardColourFirst, Icons.interests, categories.length, 'Sekcje', () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) {
-                        return SetCategoriesScreen();
-                      }
-                      ));
+                        return SetCategoriesScreen(categories);
+                      })).then((value) {
+                        setState(() {
+                          categories = value;
+                        });
+                      });
                     }),
                   ),
                 ],
@@ -127,6 +133,9 @@ class _StartScreenState extends State<StartScreen> {
             Expanded(
               child: GestureDetector(
                 onTap: () {
+                  print('Ilość graczy: $numberOfPlayers');
+                  print('Ilość szpiegów: $numberOfSpies');
+                  print('Długość rozgrywki: $numberOfMinutes');
                   print('click');
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
                     return GameScreen();
