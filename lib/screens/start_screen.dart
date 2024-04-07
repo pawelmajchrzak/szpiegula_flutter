@@ -72,7 +72,7 @@ class _StartScreenState extends State<StartScreen> {
                     child: ReusableCard(
                         kCardColourFirst, Icons.group, numberOfPlayers, 'Gracze', () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) {
-                        return SetPlayersScreen(numberOfPlayers);
+                        return SetPlayersScreen(numberOfPlayers, numberOfSpies);
                       })).then((value) {
                         setState(() {
                           numberOfPlayers = value;
@@ -85,9 +85,13 @@ class _StartScreenState extends State<StartScreen> {
                     child: ReusableCard(
                         kCardColourSecond, FontAwesomeIcons.userSecret, numberOfSpies, 'Szpiedzy', () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) {
-                        return SetSpiesScreen();
-                      }
-                      ));
+                        return SetSpiesScreen(numberOfPlayers, numberOfSpies);
+                      })).then((value) {
+                        setState(() {
+                          numberOfSpies = value;
+                          print(numberOfSpies);
+                        });
+                      });
                     }),
                   ),
                 ],

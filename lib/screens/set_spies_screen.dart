@@ -4,13 +4,22 @@ import '../widgets/typical_icon_button.dart';
 import '../widgets/typical_value_presenter.dart';
 
 class SetSpiesScreen extends StatefulWidget {
+
+  int initialNumberOfPlayers;
+  int initialNumberOfSpies;
+
+  SetSpiesScreen(this.initialNumberOfPlayers,this.initialNumberOfSpies);
+
   @override
-  State<SetSpiesScreen> createState() => _SetSpiesScreenState();
+  State<SetSpiesScreen> createState() => _SetSpiesScreenState(initialNumberOfPlayers,initialNumberOfSpies);
 }
 
 class _SetSpiesScreenState extends State<SetSpiesScreen> {
-  int numberOfSpies = 1;
+  int numberOfPlayers;
+  int numberOfSpies;
   String alert = '';
+
+  _SetSpiesScreenState(this.numberOfPlayers,this.numberOfSpies);
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +69,7 @@ class _SetSpiesScreenState extends State<SetSpiesScreen> {
                   TypicalValuePresenter(value: numberOfSpies),
                   TypicalIconButton(() {
                     setState(() {
-                      if (numberOfSpies < 5) {
+                      if (2*numberOfSpies+1 < numberOfPlayers) {
                         numberOfSpies++;
                         alert = '';
                       } else {
@@ -86,7 +95,7 @@ class _SetSpiesScreenState extends State<SetSpiesScreen> {
               onTap: () {
                 print('click');
                 //onPress();
-                Navigator.pop(context);
+                Navigator.pop(context, numberOfSpies);
               },
               child: Container(
                 height: 90,

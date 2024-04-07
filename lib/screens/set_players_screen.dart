@@ -6,20 +6,21 @@ import '../widgets/typical_value_presenter.dart';
 class SetPlayersScreen extends StatefulWidget {
 
   int initialNumberOfPlayers;
-  SetPlayersScreen(this.initialNumberOfPlayers);
+  int initialNumberOfSpies;
+
+  SetPlayersScreen(this.initialNumberOfPlayers,this.initialNumberOfSpies);
 
 
   @override
-  State<SetPlayersScreen> createState() => _SetPlayersScreenState(initialNumberOfPlayers);
+  State<SetPlayersScreen> createState() => _SetPlayersScreenState(initialNumberOfPlayers, initialNumberOfSpies);
 }
 
 class _SetPlayersScreenState extends State<SetPlayersScreen> {
   int numberOfPlayers;
+  int numberOfSpies;
   String alert = '';
 
-  _SetPlayersScreenState(this.numberOfPlayers);
-
-  //get numberOfPlayers => null;
+  _SetPlayersScreenState(this.numberOfPlayers,this.numberOfSpies);
 
   @override
   Widget build(BuildContext context) {
@@ -59,8 +60,14 @@ class _SetPlayersScreenState extends State<SetPlayersScreen> {
                   TypicalIconButton(() {
                     setState(() {
                       if (numberOfPlayers > 3) {
-                        numberOfPlayers--;
-                        alert = '';
+                        if (2*numberOfSpies < numberOfPlayers) {
+                          numberOfPlayers--;
+                          alert = '';
+                        } else {
+                          alert = 'Zmniejszy najpierw ilość szpiegów';
+                        }
+
+                        //numberOfSpies = (numberOfPlayers/2) as int;
                       } else {
                         alert = 'Minimalnie 3 graczy';
                       }
