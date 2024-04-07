@@ -5,14 +5,28 @@ import '../widgets/typical_icon_button.dart';
 import '../widgets/typical_value_presenter.dart';
 
 class GameScreen extends StatefulWidget {
+
+  final int numberOfPlayers;
+  final int numberOfSpies;
+  final int numberOfMinutes;
+  final List<String> categories;
+
+
+  GameScreen(this.numberOfPlayers, this.numberOfSpies, this.numberOfMinutes,
+      this.categories);
+
   @override
   State<GameScreen> createState() => _GameScreenState();
 }
 
 class _GameScreenState extends State<GameScreen> {
-  int numberOfSpies = 1;
+
+
+
+
   String alert = '';
   Color color1 = kCardColourSecond;
+
 
   double _rotationAngle = 3.14; // Aktualny kąt obrotu karty
   bool _isSpy = false; // Flaga sprawdzająca czy jesteś szpiegiem
@@ -20,6 +34,11 @@ class _GameScreenState extends State<GameScreen> {
 
   @override
   Widget build(BuildContext context) {
+    int numberOfPlayers = widget.numberOfPlayers;
+    int numberOfSpies = widget.numberOfSpies;
+    int numberOfMinutes = widget.numberOfMinutes;
+    List<String> categories = widget.categories;
+
     return Scaffold(
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),

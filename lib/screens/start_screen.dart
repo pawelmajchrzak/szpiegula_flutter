@@ -133,12 +133,13 @@ class _StartScreenState extends State<StartScreen> {
             Expanded(
               child: GestureDetector(
                 onTap: () {
-                  print('Ilość graczy: $numberOfPlayers');
-                  print('Ilość szpiegów: $numberOfSpies');
-                  print('Długość rozgrywki: $numberOfMinutes');
+                  // print('Ilość graczy: $numberOfPlayers');
+                  // print('Ilość szpiegów: $numberOfSpies');
+                  // print('Długość rozgrywki: $numberOfMinutes');
+                  // print(categories);
                   print('click');
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return GameScreen();
+                    return GameScreen(numberOfPlayers,numberOfSpies,numberOfMinutes,categories);
                   }
                   ));
                 },
