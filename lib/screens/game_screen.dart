@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:szpiegula/screens/time_screen.dart';
 import '../constants.dart';
 import '../widgets/category_card.dart';
 import '../widgets/typical_icon_button.dart';
@@ -21,7 +22,8 @@ class GameScreen extends StatefulWidget {
 
 class _GameScreenState extends State<GameScreen> {
 
-
+  int cardRotationNumber = 0;
+  int currentPlayer = 1;
 
 
   String alert = '';
@@ -39,6 +41,7 @@ class _GameScreenState extends State<GameScreen> {
     int numberOfMinutes = widget.numberOfMinutes;
     List<String> categories = widget.categories;
 
+
     return Scaffold(
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
@@ -52,7 +55,7 @@ class _GameScreenState extends State<GameScreen> {
             Container(
               alignment: Alignment.center,
               child: Text(
-                'Player #1',
+                'Player #$currentPlayer',
                 style: TextStyle(
                   fontSize: 25,
                 ),
@@ -63,22 +66,32 @@ class _GameScreenState extends State<GameScreen> {
               child: GestureDetector(
                 onTap: () {
                   setState(() {
-                    if (_rotationAngle == 3.14) {
-                      //color1 = kCardColourSecond;
-                      _rotationAngle = 0;
-                      comment = 'Zakryj kartę zanim przekażesz telefon dalej';
-                    } else {
-                      //color1 = kCardColourFirst;
-                      _rotationAngle = 3.14;
-                      comment = 'Naciśnij na kartę wtedy dowiesz się czy jesteś szpiegiem';
-                    }
-                    //_rotationAngle = _rotationAngle == 0.0 ? 3.14 : 0.0;
-                    Future.delayed(Duration(milliseconds: 400), () {
-                      setState(() {
-                        _isSpy = !_isSpy;
-                        //color2 = color1;
+                    print(currentPlayer);
+                    print(numberOfPlayers);
+                    if (currentPlayer <= numberOfPlayers) {
+                      if (_rotationAngle == 3.14) {
+                        //color1 = kCardColourSecond;
+                        _rotationAngle = 0;
+                        comment = 'Zakryj kartę zanim przekażesz telefon dalej';
+                      } else {
+                        //color1 = kCardColourFirst;
+                        _rotationAngle = 3.14;
+                        currentPlayer++;
+                        print(currentPlayer);
+                        comment = 'Naciśnij na kartę wtedy dowiesz się czy jesteś szpiegiem';
+                      }
+                      //_rotationAngle = _rotationAngle == 0.0 ? 3.14 : 0.0;
+                      Future.delayed(Duration(milliseconds: 400), () {
+                        setState(() {
+                          _isSpy = !_isSpy;
+                          //color2 = color1;
+                        });
                       });
-                    });
+                    } else {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) {
+                        return TimeScreen(numberOfMinutes);
+                      }));
+                    }
                   });
                 },
                 child: AnimatedContainer(
