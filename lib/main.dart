@@ -4,10 +4,11 @@ import 'package:szpiegula/screens/set_spies_screen.dart';
 import 'package:szpiegula/screens/set_timer_screen.dart';
 import 'package:szpiegula/screens/start_screen.dart';
 import 'package:szpiegula/screens/time_screen.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 
 
 
-void main() => runApp(SpyApp());
+void main() => runApp(Phoenix(child: SpyApp()));
 
 class SpyApp extends StatelessWidget {
 

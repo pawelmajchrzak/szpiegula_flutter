@@ -1,6 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
+import 'package:szpiegula/screens/start_screen.dart';
 import '../constants.dart';
 class TimeScreen extends StatefulWidget {
 
@@ -107,7 +110,7 @@ class _TimeScreenState extends State<TimeScreen> {
               height: 170,
               child: GestureDetector(
                 onTap: () {
-                  Navigator.pop(context);
+                  Phoenix.rebirth(context);
                 },
                 child: Container(
                   margin: EdgeInsets.only(top: 30, bottom: 70, left: 10, right: 10),
