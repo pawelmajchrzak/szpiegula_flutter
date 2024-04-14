@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:szpiegula/models/password_manager.dart';
 
 List<int> generateRandomSpies(int numberOfSpies, int numberOfPlayers) {
   List<int> spies = [];
@@ -13,5 +14,6 @@ List<int> generateRandomSpies(int numberOfSpies, int numberOfPlayers) {
 }
 
 String getPassword(List<String> categories) {
-  return 'banan';
+  PasswordManager passwordManager = new PasswordManager();
+  return passwordManager.getRandomPasswordFromSelectedCategories(categories);
 }
