@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:szpiegula/models/passwords.dart';
 
 class PasswordManager extends Passwords{

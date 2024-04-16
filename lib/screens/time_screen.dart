@@ -1,22 +1,18 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
-import 'package:szpiegula/screens/start_screen.dart';
-import '../constants.dart';
+
 class TimeScreen extends StatefulWidget {
+  final int numberOfMinutes;
 
-   final int numberOfMinutes;
-
-   TimeScreen(this.numberOfMinutes);
+  TimeScreen(this.numberOfMinutes);
 
   @override
   State<TimeScreen> createState() => _TimeScreenState();
 }
 
 class _TimeScreenState extends State<TimeScreen> {
-
   late int minutes;
   late int seconds;
   bool timeUp = false;
@@ -58,10 +54,8 @@ class _TimeScreenState extends State<TimeScreen> {
     super.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
-    int numberOfMinutes = widget.numberOfMinutes;
     return Scaffold(
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
@@ -78,13 +72,13 @@ class _TimeScreenState extends State<TimeScreen> {
             SizedBox(
               height: 70,
             ),
-            Text (
+            Text(
               'Pozostało czasu:',
               style: TextStyle(
                 fontSize: 30,
               ),
             ),
-            Icon (
+            Icon(
               Icons.timer,
               size: 100,
             ),
@@ -102,7 +96,6 @@ class _TimeScreenState extends State<TimeScreen> {
                   color: Colors.red,
                 ),
               ),
-
             SizedBox(
               height: 30,
             ),
@@ -113,7 +106,8 @@ class _TimeScreenState extends State<TimeScreen> {
                   Phoenix.rebirth(context);
                 },
                 child: Container(
-                  margin: EdgeInsets.only(top: 30, bottom: 70, left: 10, right: 10),
+                  margin:
+                      EdgeInsets.only(top: 30, bottom: 70, left: 10, right: 10),
                   decoration: BoxDecoration(
                     color: Color(0xFF960bf2),
                     borderRadius: BorderRadius.circular(10.0),

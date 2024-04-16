@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ReusableCard extends StatelessWidget {
-
-  ReusableCard(this.colorCard, this.iconCard, this.valueCard, this.nameCard, this.onPress);
+  ReusableCard(this.colorCard, this.iconCard, this.valueCard, this.nameCard,
+      this.onPress);
 
   final Color colorCard;
   final IconData iconCard;
@@ -52,6 +52,4 @@ class ReusableCard extends StatelessWidget {
       ),
     );
   }
-
-
 }

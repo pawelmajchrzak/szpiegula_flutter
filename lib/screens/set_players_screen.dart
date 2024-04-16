@@ -66,8 +66,6 @@ class _SetPlayersScreenState extends State<SetPlayersScreen> {
                         } else {
                           alert = 'Zmniejsz najpierw ilość szpiegów';
                         }
-
-                        //numberOfSpies = (numberOfPlayers/2) as int;
                       } else {
                         alert = 'Minimalnie 3 graczy';
                       }
@@ -100,8 +98,6 @@ class _SetPlayersScreenState extends State<SetPlayersScreen> {
             ),
             GestureDetector(
               onTap: () {
-                print('click');
-                //onPress();
                 Navigator.pop(context, numberOfPlayers);
               },
               child: Container(
