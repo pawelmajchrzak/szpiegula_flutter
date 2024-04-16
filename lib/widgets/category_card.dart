@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import '../constants.dart';
 
 class CategoryCard extends StatelessWidget {
-
   CategoryCard(this.colorCard, this.iconCard, this.nameCard, this.onPress);
 
   final Color colorCard;
@@ -40,6 +38,4 @@ class CategoryCard extends StatelessWidget {
       ),
     );
   }
-
-
 }

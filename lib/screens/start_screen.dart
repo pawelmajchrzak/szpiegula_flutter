@@ -6,7 +6,6 @@ import 'package:szpiegula/screens/set_players_screen.dart';
 import 'package:szpiegula/screens/set_spies_screen.dart';
 import 'package:szpiegula/screens/set_timer_screen.dart';
 import 'package:szpiegula/widgets/reusable_card.dart';
-
 import '../constants.dart';
 
 class StartScreen extends StatefulWidget {
@@ -17,12 +16,17 @@ class StartScreen extends StatefulWidget {
 }
 
 class _StartScreenState extends State<StartScreen> {
-
   int numberOfPlayers = 3;
   int numberOfSpies = 1;
   int numberOfMinutes = 5;
-
-
+  List<String> categories = [
+    'Państwa',
+    'Obiekty',
+    'Sport',
+    'Miejsca',
+    'Zwierzęta',
+    'Transport'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -44,14 +48,14 @@ class _StartScreenState extends State<StartScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Icon(
-                    Icons.flag_circle,
-                    size: 30,
-                  ),
-                  Icon(
-                    Icons.help,
-                    size: 30,
-                  ),
+                  // Icon(
+                  //   Icons.flag_circle,
+                  //   size: 30,
+                  // ),
+                  // Icon(
+                  //   Icons.help,
+                  //   size: 30,
+                  // ),
                 ],
               ),
             ),
@@ -69,25 +73,32 @@ class _StartScreenState extends State<StartScreen> {
               child: Row(
                 children: [
                   Expanded(
-                    child: ReusableCard(
-                        kCardColourFirst, Icons.group, numberOfPlayers, 'Gracze', () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) {
-                        return SetPlayersScreen(numberOfPlayers);
+                    child: ReusableCard(kCardColourFirst, Icons.group,
+                        numberOfPlayers, 'Gracze', () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return SetPlayersScreen(numberOfPlayers, numberOfSpies);
                       })).then((value) {
                         setState(() {
                           numberOfPlayers = value;
-                          print(numberOfPlayers);
                         });
                       });
                     }),
                   ),
                   Expanded(
                     child: ReusableCard(
-                        kCardColourSecond, FontAwesomeIcons.userSecret, numberOfSpies, 'Szpiedzy', () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) {
-                        return SetSpiesScreen();
-                      }
-                      ));
+                        kCardColourSecond,
+                        FontAwesomeIcons.userSecret,
+                        numberOfSpies,
+                        'Szpiedzy', () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return SetSpiesScreen(numberOfPlayers, numberOfSpies);
+                      })).then((value) {
+                        setState(() {
+                          numberOfSpies = value;
+                        });
+                      });
                     }),
                   ),
                 ],
@@ -98,20 +109,29 @@ class _StartScreenState extends State<StartScreen> {
                 children: [
                   Expanded(
                     child: ReusableCard(
-                        kCardColourSecond, Icons.timer, numberOfMinutes, 'Czas', () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) {
-                        return SetTimerScreen();
-                      }
-                      ));
+                        kCardColourSecond, Icons.timer, numberOfMinutes, 'Czas',
+                        () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return SetTimerScreen(numberOfMinutes);
+                      })).then((value) {
+                        setState(() {
+                          numberOfMinutes = value;
+                        });
+                      });
                     }),
                   ),
                   Expanded(
-                    child: ReusableCard(
-                        kCardColourFirst, Icons.interests, 5, 'Sekcje', () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) {
-                        return SetCategoriesScreen();
-                      }
-                      ));
+                    child: ReusableCard(kCardColourFirst, Icons.interests,
+                        categories.length, 'Sekcje', () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return SetCategoriesScreen(categories);
+                      })).then((value) {
+                        setState(() {
+                          categories = value;
+                        });
+                      });
                     }),
                   ),
                 ],
@@ -123,14 +143,14 @@ class _StartScreenState extends State<StartScreen> {
             Expanded(
               child: GestureDetector(
                 onTap: () {
-                  print('click');
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return GameScreen();
-                  }
-                  ));
+                    return GameScreen(numberOfPlayers, numberOfSpies,
+                        numberOfMinutes, categories);
+                  }));
                 },
                 child: Container(
-                  margin: EdgeInsets.only(top: 30, bottom: 70, left: 10, right: 10),
+                  margin:
+                      EdgeInsets.only(top: 30, bottom: 70, left: 10, right: 10),
                   decoration: BoxDecoration(
                     color: Color(0xFF960bf2),
                     borderRadius: BorderRadius.circular(10.0),

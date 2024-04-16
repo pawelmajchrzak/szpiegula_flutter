@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:szpiegula/screens/set_players_screen.dart';
-import 'package:szpiegula/screens/set_spies_screen.dart';
-import 'package:szpiegula/screens/set_timer_screen.dart';
 import 'package:szpiegula/screens/start_screen.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 
-
-void main() => runApp(SpyApp());
+void main() => runApp(Phoenix(child: SpyApp()));
 
 class SpyApp extends StatelessWidget {
 
@@ -17,7 +14,6 @@ class SpyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.transparent,
       ),
       home: StartScreen(),
-
     );
   }
 }
